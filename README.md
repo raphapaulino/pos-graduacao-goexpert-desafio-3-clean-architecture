@@ -1,6 +1,6 @@
-# pos-graduacao-goexpert-desafio-3-clean-architecture
-
 # Desafio 3 - Clean Code (Pós Graduação GoExpert)
+
+## OBS.: Estou terminando de atualizar a documentação localmente, logo subo aqui no repositório.
 
 ### DESCRIÇÃO DO DESAFIO
 
@@ -47,10 +47,6 @@ git clone git@github.com:raphapaulino/pos-graduacao-goexpert-desafio-3-clean-arc
 ```
 go run main.go
 ```
-
-<!-- 2. O teste acima irá gerar um resultado semelhante a imagem abaixo: -->
-<!-- ![Resposta da API](doc-images/20240601_115957.png "Resposta da API mais rápida") -->
-
 
 That's all folks! : )
 
