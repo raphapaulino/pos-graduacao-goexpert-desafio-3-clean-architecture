@@ -1,7 +1,5 @@
 # Desafio 3 - Clean Code (Pós Graduação GoExpert)
 
-## OBS.: Estou terminando de atualizar a documentação localmente, logo subo aqui no repositório.
-
 ### DESCRIÇÃO DO DESAFIO
 
 Olá devs!
@@ -154,19 +152,56 @@ http://localhost:8080
 
 Por fim...
 
-6. `gRPC`: Para acessar esse serviço, pelo terminal, execute o comando abaixo na raiz do projeto:
+6. `gRPC`: Para acessar esse serviço, em um `novo terminal`, execute o comando abaixo na raiz do projeto:
 
 ```
 evans -r repl
 ```
 
+Obs.: Caso obtenha o erro abaixo assim que rodar o comando anterior, certifique-se de que o `passo 3` foi executado corretamente sem nenhum erro e todos os serviços estão ativos:
+
+```
+evans -r repl
+evans: failed to run REPL mode: failed to instantiate a new spec: failed to instantiate the spec: failed to list packages by gRPC reflection: failed to list services from reflection enabled gRPC server: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp 127.0.0.1:50051: connect: connection refused"
+```
+
 
 <!-- Rode o comando abaixo e dentro dele use call CreateOrder ou call ListOrders -->
 
-6.1 Rode dentro do gRPC os comandos CreateOrder ou call ListOrders
+6.1 Após acessar o gRPC utilizando o evans e executar os comandos `call ListOrders` e `call CreateOrder`, é preciso selecionar um pacote, um serviço e então as chamadas a serem executadas. Para isso siga para todas as etapas na sequência a seguir:
 
+- 6.1.1 Digite `show` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `package` e pressione ENTER;
 
+- 6.1.2 Digite `package` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `pb` e pressione ENTER;
 
+- 6.1.3 Digite `show` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `service` e pressione ENTER;
+
+- 6.1.4 Digite `service` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `OrderService` e pressione ENTER;
+
+- 6.1.5 Para listar os pedidos: Digite `call` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `ListOrders` e pressione ENTER;
+
+Obs.: Caso obtenha o erro abaixo assim que rodar o comando anterior, certifique-se de que as credenciais de acesso banco de dados estão corretas :
+
+```
+command call: rpc error: code = Unknown desc = Error 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+```
+
+- 6.1.6 Para registrar um novo pedido: Digite `call` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `CreateOrders` e pressione ENTER;
+
+  - Informe uma string qualquer no campo `id` (ex.: `abcdef`) e pressione ENTER
+  - Informe uma valor inteiro ou com 2 casas decimais qualquer no campo `price` (ex.: `50`) e pressione ENTER 
+  - Informe uma valor inteiro ou com 2 casas decimais qualquer no campo `tax` (ex.: `10`) e pressione ENTER
+
+- 6.1.7 Liste os pedidos novamente: Digite `call` e dê um ESPAÇO, serão exibidas opções de comandos, com a tecla TAB selecione `ListOrders` e pressione ENTER;
+
+- 6.1.8 Para finalizar, Digite `exit` e pressione ENTER para sair do evans.
+
+![gRPC no Terminal](doc-images/20240604_095931.png "Print 1")
+
+![gRPC no Terminal](doc-images/20240604_100018.png "Print 2")
+
+![gRPC no Terminal](doc-images/20240604_100101.png "Print 3")
 
 
 ### EXTRA
