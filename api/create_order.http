@@ -1,0 +1,9 @@
+POST http://localhost:8000/createorder HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "id":"mmmm",
+    "price": 9999.9,
+    "tax": 9.9
+}
