@@ -30,6 +30,7 @@ Esta listagem precisa ser feita com:
 
 É possível encontrar todas as instruções de como baixar e instalar o `GO` nos sistemas operacionais Windows, Mac ou Linux [aqui](https://go.dev/doc/install).
 
+
 #### 2. Instalar o Git no sistema operacional:
 
 É possível encontrar todas as instruções de como baixar e instalar o `Git` nos sistemas operacionais Windows, Mac ou Linux [aqui](https://www.git-scm.com/downloads).
@@ -39,11 +40,13 @@ Esta listagem precisa ser feita com:
 
 É possível encontrar todas as instruções de como baixar e instalar o `Docker` nos sistemas operacionais Windows, Mac ou Linux [aqui](https://docs.docker.com/engine/install/).
 
+
 #### 4. Instalar o programa 'migrate' no sistema operacional:
 
 É possível encontrar todas as instruções de como baixar e instalar o `migrate` nos sistemas operacionais Windows, Mac ou Linux  [aqui](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate).
 
 Mais informações na [página inicial do repositório](https://github.com/golang-migrate/migrate).
+
 
 #### 5. Clonar o repositório:
 
@@ -51,7 +54,14 @@ Mais informações na [página inicial do repositório](https://github.com/golan
 git clone git@github.com:raphapaulino/pos-graduacao-goexpert-desafio-3-clean-architecture.git
 ```
 
-#### 6. Conferir serviço MySQL
+#### 6. Instalar o Evans no sistema operacional:
+
+É possível encontrar todas as instruções de como baixar e instalar o `Evans` nos sistemas operacionais Windows, Mac ou Linux [aqui](https://github.com/ktr0731/evans?tab=readme-ov-file#installation).
+
+Mais informações na [página inicial do repositório](https://github.com/ktr0731/evans).
+
+
+#### 7. Conferir serviço MySQL
 
 É **extremamente importante** para a correta execução desse projeto que não esteja com a porta padrão `3306` utilizada pelo `MySQL` em uso antes de iniciar as instruções abaixo.  
 
@@ -69,13 +79,17 @@ docker-compose up -d
 migrate -path=sql/migrations -database="mysql://root:root@tcp(localhost:3306)/orders" -verbose up
 ```
 
-3. Estando na raiz do projeto, via terminal, execute o comando abaixo:
+3. À partir da raiz do projeto, via terminal, desça no diretório `ordersystem` conforme instruções abaixo e, logo em seguida, execute o comando posterior:
+
+```
+cd cmd/ordersystem/
+```
 
 ```
 go run main.go wire_gen.go
 ```
 
-**Obs.:** Esse comando irá "subir" no endereço `http://localhost` os serviços:
+**Obs.:** O comando acima irá "subir" no endereço `http://localhost` os serviços:
 
 - `Web` na porta `8000`
 - `gRPC` na porta `50051`
@@ -96,21 +110,20 @@ http://localhost:8080/order
 ```
 ![Requisição que lista pedidos](doc-images/20240602_211525.png "Lista todos pedidos")
 
-**Obs.:** Na pasta api existem dois arquivos http para fazer as chamadas `api/create_order.http` e `api/list_orders.http` que podem ser aproveitados para executar requisições com a extensão `Rest Client` do `VSCode`.
-
+**Obs.:** Na pasta api existem dois arquivos http `api/create_order.http` e `api/list_orders.http` que podem ser aproveitados para executar requisições com a extensão `Rest Client` do `VSCode`.
 
 5. Após executar as migrações e a requisição do arquivo `api/create_order.http`, para verificar as informações direto no banco de dados MySQL, siga os passos a seguir:
 
-5.1. Acesse o container docker do mysql
+5.1. Acesse o container docker do mysql da seguinte forma:
 
 ```
 docker exec -it mysql bash
 ```
 
-5.2. Acesse o banco de dados mysql dentro do container docker
+5.2. Acesse o banco de dados mysql dentro do container docker:
 
 ```
-mysql -uroot -p courses
+mysql -uroot -p orders
 ```
 
 Assim que for solicitado a senha, informe `root`.
@@ -118,11 +131,11 @@ Assim que for solicitado a senha, informe `root`.
 Então:
 
 ```
-USE courses;
+USE orders;
 ```
 
 ```
-SELECT * FROM courses;
+SELECT * FROM orders;
 ```
 
 ![Acesso ao banco MySQL pelo terminal](doc-images/20240602_211703.png "Tabela orders")
@@ -134,9 +147,26 @@ SELECT * FROM courses;
 http://localhost:8080
 ```
 
-6.1. Em seguida, informe à esquerda o código completo da `query` da imagem abaixo e então clique no botão de Play em destaque:
+6.1. Em seguida, informe à esquerda o código completo da `query` da imagem abaixo, clique no botão de Play em destaque e então selecione a opção `listOrders`:
 
 ![Graphql no Browser](doc-images/20240602_211245.png "Query listOrders")
+
+
+Por fim...
+
+6. `gRPC`: Para acessar esse serviço, pelo terminal, execute o comando abaixo na raiz do projeto:
+
+```
+evans -r repl
+```
+
+
+<!-- Rode o comando abaixo e dentro dele use call CreateOrder ou call ListOrders -->
+
+6.1 Rode dentro do gRPC os comandos CreateOrder ou call ListOrders
+
+
+
 
 
 ### EXTRA
